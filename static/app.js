@@ -1,0 +1,14 @@
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
+const pct=n=>new Intl.NumberFormat('en-US',{style:'percent',maximumFractionDigits:1}).format(n);
+async function loadPortfolio(){
+  const response=await fetch('/api/portfolio/demo'),data=await response.json();
+  if(!response.ok)throw Error(data.error);
+  const cards=[['Portfolio value',money(data.total_value)],['Unrealized P/L',money(data.total_gain_loss)],['Est. volatility',pct(data.estimated_volatility)],['Diversification',Math.round(data.diversification_score)+'/100']];
+  const metrics=document.querySelector('#metrics');metrics.replaceChildren();
+  for(const [label,value] of cards){const card=document.createElement('div');card.className='metric';const name=document.createElement('label');name.textContent=label;const amount=document.createElement('strong');amount.textContent=value;card.append(name,amount);metrics.appendChild(card)}
+  const allocation=document.querySelector('#allocation');allocation.replaceChildren();
+  for(const [name,value] of Object.entries(data.allocations)){const row=document.createElement('div');row.className='allocation-row';const legend=document.createElement('div');const title=document.createElement('span');title.textContent=name;const percentage=document.createElement('span');percentage.textContent=pct(value);legend.append(title,percentage);const bar=document.createElement('div');bar.className='bar';const fill=document.createElement('i');fill.style.width=Math.max(0,Math.min(100,Number(value)*100))+'%';bar.appendChild(fill);row.append(legend,bar);allocation.appendChild(row)}
+}
+function message(text,role,tools=[]){const node=document.createElement('div');node.className=`message ${role}`;node.textContent=text;if(tools.length){const trace=document.createElement('span');trace.className='trace';trace.textContent='TOOLS · '+tools.join(' → ');node.appendChild(trace)}document.querySelector('#messages').appendChild(node);node.scrollIntoView({behavior:'smooth'})}
+document.querySelector('#chat').addEventListener('submit',async event=>{event.preventDefault();const input=document.querySelector('#question'),button=event.currentTarget.querySelector('button'),question=input.value.trim();if(!question)return;message(question,'user');input.value='';button.disabled=true;try{const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({user_id:'demo',question})}),data=await response.json();if(!response.ok)throw Error(data.error);message(data.answer+'\n\n'+data.disclaimer,'agent',data.tools_used)}catch(error){message('I could not complete that analysis: '+error.message,'agent')}finally{button.disabled=false;input.focus()}});
+fetch('/api/health').then(r=>r.json()).then(x=>document.querySelector('#status').textContent='● '+x.provider.toUpperCase());loadPortfolio().catch(error=>message(error.message,'agent'));

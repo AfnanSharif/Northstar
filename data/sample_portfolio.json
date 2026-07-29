@@ -1,0 +1,11 @@
+{
+  "user_id": "demo",
+  "risk_tolerance": "moderate",
+  "horizon_years": 10,
+  "holdings": [
+    {"symbol":"VTI","name":"US Total Market ETF","asset_class":"US Equity","quantity":42,"price":275.00,"cost_basis":230.00,"annual_volatility":0.18,"expected_return":0.075,"return_history":[0.021,-0.014,0.032,0.009,-0.018,0.025,0.018,-0.026,0.041,-0.011,0.017,0.006]},
+    {"symbol":"VXUS","name":"International Equity ETF","asset_class":"International Equity","quantity":26,"price":64.00,"cost_basis":58.00,"annual_volatility":0.20,"expected_return":0.070,"return_history":[0.018,-0.021,0.027,0.012,-0.025,0.019,0.025,-0.031,0.036,-0.015,0.021,0.004]},
+    {"symbol":"BND","name":"US Total Bond ETF","asset_class":"Bonds","quantity":55,"price":73.00,"cost_basis":72.00,"annual_volatility":0.07,"expected_return":0.040,"return_history":[0.004,-0.003,0.006,0.002,-0.005,0.004,0.003,-0.004,0.007,-0.002,0.004,0.003]},
+    {"symbol":"CASH","name":"Cash Reserve","asset_class":"Cash","quantity":1,"price":3500.00,"cost_basis":3500.00,"annual_volatility":0.005,"expected_return":0.035,"return_history":[0.0028,0.0029,0.0030,0.0030,0.0031,0.0031,0.0032,0.0031,0.0032,0.0032,0.0033,0.0033]}
+  ]
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Northstar Wealth Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="aurora a"></div><div class="aurora b"></div>
+  <main>
+    <nav><div class="brand"><span>✦</span> NORTHSTAR</div><span class="mode">EXPLAINABLE ANALYSIS</span></nav>
+    <section class="hero"><p class="eyebrow">YOUR PORTFOLIO · IN CONTEXT</p><h1>Clarity for every<br><em>financial decision.</em></h1><p>Auditable portfolio tools, conversational explanations, and no hidden trades.</p></section>
+    <section id="metrics" class="metrics"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></section>
+    <section class="workspace">
+      <aside><h2>Allocation</h2><div id="allocation"></div><p class="micro">Estimates use the values and assumptions in the loaded portfolio.</p></aside>
+      <div class="chat-panel">
+        <div class="chat-head"><div><h2>Ask Northstar</h2><p>See which tools answer each question.</p></div><span id="status">● LOCAL</span></div>
+        <div id="messages" class="messages"><div class="message agent">Try “How concentrated am I?”, “Stress test my risk,” or “Project my portfolio.”</div></div>
+        <form id="chat"><input id="question" maxlength="2000" autocomplete="off" placeholder="Ask about your portfolio…" required><button aria-label="Send">↗</button></form>
+      </div>
+    </section>
+    <footer>Educational analysis only—not individualized investment, tax, or legal advice.</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+

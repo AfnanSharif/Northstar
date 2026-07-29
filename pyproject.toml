@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wealth-agent"
+version = "1.0.0"
+description = "Explainable agentic portfolio analysis with local and Microsoft Fabric data adapters"
+requires-python = ">=3.11"
+
+[project.scripts]
+wealth-agent = "wealth_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
